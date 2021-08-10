@@ -31,10 +31,10 @@ Sample page hosted on Heroku: tryit ... https://idomai.herokuapp.com/ 📢
 
 
 ### Media Pipe with filters
-![https://github.com/AdonaiVera/idomai/blob/master/img/filter1.png](https://github.com/AdonaiVera/idomai/blob/master/img/filter1.png)
+![https://github.com/AdonaiVera/idomai/blob/master/img/filter1.png](https://github.com/AdonaiVera/idomai/blob/master/img/filter1.PNG)
 
 ### Media Pipe hands | Smart Board
-![https://github.com/AdonaiVera/idomai/blob/master/img/filter2.png](https://github.com/AdonaiVera/idomai/blob/master/img/filter2.png)
+![https://github.com/AdonaiVera/idomai/blob/master/img/filter2.png](https://github.com/AdonaiVera/idomai/blob/master/img/filter2.PNG)
 
 
 # Manual deployment 📦
