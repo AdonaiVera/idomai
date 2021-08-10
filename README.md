@@ -85,7 +85,7 @@ Architecture is divided intro three main parts:
 3. Azure media services to stream videos in real time
 
 <div align="center">
-       <img src="https://dev.azure.com/GetaClub-Platform/2f2f3a07-afad-4ed8-808f-894090291566/_apis/git/repositories/913ecb15-1595-4723-8cee-f3192661b79f/items?path=%2Fimg%2Farchitecture.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=main&resolveLfs=true&%24format=octetStream&api-version=5.0" width="800px"</img> 
+       <img src="https://github.com/AdonaiVera/idomai/blob/master/img/architecture.png" width="800px"</img> 
 </div>
 
 
