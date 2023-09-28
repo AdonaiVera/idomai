@@ -1,8 +1,23 @@
 # IDOM+ AI  🤓
+## Strokes of AI: Creating Visual Magic in Real Time with MediaPipe and Streamlit. "Pinceladas de IA: Creando Magia Visual en Tiempo Real con MediaPipe y Streamlit"
+
 Teaching Academy with AI
+
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com/?lines=Welcome+Keras+Community+Day!;Bienvenidos!;Accueillir!;欢迎!&font=Fira%20Code&center=true&width=380&height=50">
+</p>
+
+Note: This repository is for the Keras Community Day Perú📄
 
 Sample page hosted on Heroku: tryit ... https://idomai.herokuapp.com/ 📢
 
+### MediaPipe
+<div align="center">
+       <img src="https://github.com/AdonaiVera/idomai/blob/master/img/fondo.png" width="400px"</img> 
+</div>
+
+### Presentation Keras community Day
+![image](img/code.png)
 
 # Getting Started 🎁
 1. Clone repository: For security use SSH keys.
@@ -22,13 +37,9 @@ Sample page hosted on Heroku: tryit ... https://idomai.herokuapp.com/ 📢
 
 3. Enjoy
 
+
+
 # Results 🛠️
-
-### MediaPipe
-<div align="center">
-       <img src="https://github.com/AdonaiVera/idomai/blob/master/img/fondo.png" width="400px"</img> 
-</div>
-
 
 ### Media Pipe with filters
 ![https://github.com/AdonaiVera/idomai/blob/master/img/filter1.png](https://github.com/AdonaiVera/idomai/blob/master/img/filter1.PNG)
