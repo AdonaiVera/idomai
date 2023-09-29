@@ -33,6 +33,12 @@ from streamlit_webrtc import (
     WebRtcMode,
     webrtc_streamer,
 )
+
+import warnings
+
+# Ignore all warnings
+warnings.filterwarnings("ignore")
+
 ## Changes Names and Icon
 icon = Image.open('img/icon.png')
 st.set_page_config(page_title = "Idom+ AI", page_icon = icon)
@@ -81,7 +87,7 @@ def appLoopback():
         key="loopback",
         mode=WebRtcMode.SENDRECV,
         client_settings=WEBRTC_CLIENT_SETTINGS,
-        video_transformer_factory=None,  
+        video_processor_factory=None,  
     )
 
 ## Comming soon
@@ -156,7 +162,7 @@ def appSmartBoard():
         mode=WebRtcMode.SENDRECV,
         client_settings=WEBRTC_CLIENT_SETTINGS,
         video_transformer_factory=MediaPipeTransformer,
-        async_transform=False,
+        async_processing=False,
     )
 
 
@@ -359,90 +365,94 @@ def appVideoFilters():
             return image
 
         def transform(self, frame: av.VideoFrame) -> av.VideoFrame:
-            img = frame.to_ndarray(format="bgr24")
+            try:
+                img = frame.to_ndarray(format="bgr24")
 
-            image = cv2.cvtColor(cv2.flip(img, 1), cv2.COLOR_BGR2RGB)
-            # To improve performance, optionally mark the image as not writeable to
-            # pass by reference.
-            image.flags.writeable = False
-            results = self.face_mesh.process(image)
+                image = cv2.cvtColor(cv2.flip(img, 1), cv2.COLOR_BGR2RGB)
+                # To improve performance, optionally mark the image as not writeable to
+                # pass by reference.
+                image.flags.writeable = False
+                results = self.face_mesh.process(image)
 
-            # Draw the face mesh annotations on the image.
-            image.flags.writeable = True
-            resultImg = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-            
-            
-            ## Sorry for so many conditionals, I must optimize this part
-            if results.multi_face_landmarks:
-                if self.type != "mapa puntos":
-                    if self.type == "anonymous":
-                        typeFilter = "completeFace"
-                        filterImg = self.filter1
-                    
-                    elif self.type == "bigote":
-                        typeFilter = "bigote"
-                        filterImg = self.filter2
-
-                    elif self.type == "gafas":
-                        typeFilter = "eyes"
-                        filterImg = self.filter3
-
-                    elif self.type == "sombrero":
-                        typeFilter = "head"
-                        filterImg = self.filter4
-
-                    elif self.type == "monstruo":
-                        typeFilter = "completeFace"
-                        filterImg = self.filter5
-
-                    elif self.type == "oxigeno1":
-                        typeFilter = "completeFace"
-                        filterImg = self.filter6
-
-                    elif self.type == "Mascara Covid 1":
-                        typeFilter = "mask"
-                        filterImg = self.filter8
-
-                    elif self.type == "Mascara Covid 2":
-                        typeFilter = "mask"
-                        filterImg = self.filter9
-
-                    elif self.type == "Mascara Covid 3":
-                        typeFilter = "mask"
-                        filterImg = self.filter10
-
-                    elif self.type == "Mascara Covid 4":
-                        typeFilter = "mask"
-                        filterImg = self.filter11
-
-                    elif self.type == "Mascara Covid 5":
-                        typeFilter = "mask"
-                        filterImg = self.filter12
-
-                    elif self.type == "Mascara Covid 6":
-                        typeFilter = "mask"
-                        filterImg = self.filter13
-
-                    elif self.type == "Mascara Covid 7":
-                        typeFilter = "mask"
-                        filterImg = self.filter14
-
-
-                    dstMat = self.classPoints(results.multi_face_landmarks, image, typeFilter) 
-                    resultImg = self.applyFilter(filterImg,resultImg,dstMat)  
-                    
-                else:
-                    for face_landmarks in results.multi_face_landmarks:
-                        self.mp_drawing.draw_landmarks(
-                            image=resultImg,
-                            landmark_list=face_landmarks,
-                            connections=self.mp_face_mesh.FACE_CONNECTIONS,
-                            landmark_drawing_spec=self.drawing_spec,
-                            connection_drawing_spec=self.drawing_spec)
-
-
+                # Draw the face mesh annotations on the image.
+                image.flags.writeable = True
+                resultImg = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
                 
+                
+                ## Sorry for so many conditionals, I must optimize this part
+                if results.multi_face_landmarks:
+                    if self.type != "mapa puntos":
+                        if self.type == "anonymous":
+                            typeFilter = "completeFace"
+                            filterImg = self.filter1
+                        
+                        elif self.type == "bigote":
+                            typeFilter = "bigote"
+                            filterImg = self.filter2
+
+                        elif self.type == "gafas":
+                            typeFilter = "eyes"
+                            filterImg = self.filter3
+
+                        elif self.type == "sombrero":
+                            typeFilter = "head"
+                            filterImg = self.filter4
+
+                        elif self.type == "monstruo":
+                            typeFilter = "completeFace"
+                            filterImg = self.filter5
+
+                        elif self.type == "oxigeno1":
+                            typeFilter = "completeFace"
+                            filterImg = self.filter6
+
+                        elif self.type == "Mascara Covid 1":
+                            typeFilter = "mask"
+                            filterImg = self.filter8
+
+                        elif self.type == "Mascara Covid 2":
+                            typeFilter = "mask"
+                            filterImg = self.filter9
+
+                        elif self.type == "Mascara Covid 3":
+                            typeFilter = "mask"
+                            filterImg = self.filter10
+
+                        elif self.type == "Mascara Covid 4":
+                            typeFilter = "mask"
+                            filterImg = self.filter11
+
+                        elif self.type == "Mascara Covid 5":
+                            typeFilter = "mask"
+                            filterImg = self.filter12
+
+                        elif self.type == "Mascara Covid 6":
+                            typeFilter = "mask"
+                            filterImg = self.filter13
+
+                        elif self.type == "Mascara Covid 7":
+                            typeFilter = "mask"
+                            filterImg = self.filter14
+
+                        dstMat = self.classPoints(results.multi_face_landmarks, image, typeFilter) 
+                        resultImg = self.applyFilter(filterImg,resultImg,dstMat)  
+
+                        
+                    else:
+                        for face_landmarks in results.multi_face_landmarks:
+                            self.mp_drawing.draw_landmarks(
+                                image=resultImg,
+                                landmark_list=face_landmarks,
+                                connections=self.mp_face_mesh.FACEMESH_CONTOURS,
+                                landmark_drawing_spec=self.drawing_spec,
+                                connection_drawing_spec=self.drawing_spec)
+                            
+            except Exception as e:
+                print(e)
+                pass
+            
             return resultImg
+
 
     webrtc_ctx = webrtc_streamer(
         key="mediaPipe-filter",
@@ -451,7 +461,6 @@ def appVideoFilters():
         video_transformer_factory=MediaPipeTransformer,
         async_transform=False,
     )
-
 
     if webrtc_ctx.video_transformer:
         webrtc_ctx.video_transformer.type = st.radio(
@@ -585,7 +594,6 @@ def appBackground():
         webrtc_ctx.video_transformer.type = st.radio(
             "Selecciona el tipo de filtro que deseas aplicar", ("Palacio de la Inquisición", "Torre del Reloj", "Santuario de San Pedro Claver", "Cuartel de las Bóvedas", "Convento de Santa Cruz de la Popa")
         )
-
 
 
 ## Main
