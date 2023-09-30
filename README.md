@@ -71,7 +71,8 @@ Sample page hosted on Heroku: tryit ... https://idomai.herokuapp.com/ 📢
    ```
 #### Deploy the current branch to Heroku
    ```shell
-   git push heroku <current-branch>:main
+   heroku create -a idiomai
+   git push heroku master
    ```
 
 ## Manual deployment to app services Azure 📦
