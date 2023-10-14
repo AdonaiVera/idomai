@@ -7,7 +7,6 @@ Teaching Academy with AI
   <img src="https://readme-typing-svg.herokuapp.com/?lines=Welcome+Keras+Community+Day!;Bienvenidos!;Accueillir!;欢迎!&font=Fira%20Code&center=true&width=380&height=50">
 </p>
 
-Note: This repository is for the Keras Community Day Perú📄
 
 Sample page hosted on Heroku: tryit ... https://idomai.herokuapp.com/ 📢
 
